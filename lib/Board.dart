@@ -24,7 +24,7 @@ class _BoardState extends State<Board> {
   @override
   void initState() {
     super.initState();
-    //numbers.shuffle();
+    numbers.shuffle();
 
     _detector = ShakeDetector.autoStart(
         onPhoneShake: reset
