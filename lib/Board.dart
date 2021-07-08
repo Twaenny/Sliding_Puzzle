@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:audiofileplayer/audiofileplayer.dart';
 import 'package:flutter/material.dart';
+import 'package:shake/shake.dart';
 import 'widgets/Menu.dart';
 import 'widgets/MyTitle.dart';
 import 'widgets/Grid.dart';
@@ -17,11 +19,16 @@ class _BoardState extends State<Board> {
   int secondsPassed = 0;
   bool isActive = false;
   Timer? timer;
+  late ShakeDetector _detector;
 
   @override
   void initState() {
     super.initState();
-    numbers.shuffle();
+    //numbers.shuffle();
+
+    _detector = ShakeDetector.autoStart(
+        onPhoneShake: reset
+    );
   }
 
   @override
@@ -94,9 +101,12 @@ class _BoardState extends State<Board> {
     return true;
   }
 
+
+
   void checkWin() {
     if (isSorted(numbers)) {
       isActive = false;
+      Audio.load('assets/audio/winSoundEffect.mp3')..play()..dispose();
       showDialog(
           context: context,
           builder: (BuildContext context) {
