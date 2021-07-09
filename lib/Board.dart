@@ -122,7 +122,7 @@ class _BoardState extends State<Board> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "You Win!!",
+                        "You solved it!!!",
                         style: TextStyle(fontSize: 20),
                       ),
                       SizedBox(
